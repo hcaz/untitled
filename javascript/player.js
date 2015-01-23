@@ -9,16 +9,16 @@ function player_display(){
 				if($('#'+player).position().left != x || $('#'+player).position().top != y){
 					x = x - $('#'+player).position().left;
 					y = y - $('#'+player).position().top;
-					$('#'+player).animate({left: "+="+x, top:"+="+y}, 4900);
+					$('#'+player).animate({left: "+="+x, top:"+="+y}, 900);
 				}
 			}else{
-				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"></div>");
+				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
 			}
 		}
 	}
 }
 function player_map(){
-	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;background:#000000;\"></div>");
+	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;background:#000000;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
 	x = 5000 - ($(document).width() / 2);
 	y = 5000 - ($(document).height() / 2);
 	$('#players').css("left", "-"+x);
