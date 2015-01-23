@@ -1,6 +1,6 @@
 body{
 	overflow: hidden;
-	background: url('../images/main_background.png');
+	background: url('/images/main_background.png');
 }
 #loader{
 	position: fixed;
@@ -10,7 +10,7 @@ body{
 	top: calc(50% - 15%);
 	border-radius: 15px;
 	border: 4px solid #fff;
-	background: url('../images/loader_background.png');
+	background: url('/images/loader_background.png');
 }
 #loader > div{
 	position: absolute;
@@ -18,7 +18,7 @@ body{
 	height: 50px;
 	left: calc(50% - 25px);
 	top: calc(50% - 75px);
-	background: url('../images/loader_image.gif');
+	background: url('/images/loader_image.gif');
 	background-size: cover;
 }
 #loader > h1{
@@ -35,4 +35,11 @@ body{
 	top: calc(50% + 25px);
 	width: 100%;
 	text-align:center;
+}
+
+.player{
+	position: fixed;
+	width: 25px;
+	height: 25px;
+	background: #000;
 }

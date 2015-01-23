@@ -7,6 +7,7 @@
 	</head>
 	
 	<body>
-		<div id="loader"><div></div><h1>Loading...</h1><p>Downloading scripts<br />Please make sure JavaScript is enabled.</p></div>
+		<div id="loader"><div></div><h1>Loading...</h1><p>Checking browser compatibility<br />Please make sure JavaScript is enabled.</p></div>
+		<div id="players"></div>
 	</body>
 </html>
