@@ -9,5 +9,5 @@ $(document).ready(function() {
 	player_sync();
 	window.setInterval(function(){
 		player_sync();
-	}, 10000);
+	}, 5000);
 });

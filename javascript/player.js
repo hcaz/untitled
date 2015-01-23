@@ -1,30 +1,39 @@
-var players = [["test","eee",5300,5000]];
+var players = [["fill","000000",10000,10000]];
 function player_display(){
 	for(var i=0;i<players.length;i++){
 		player = "player_"+players[i][0];
 		x = players[i][2];
 		y = players[i][3];
 		if($('#'+player).length){
-			x = $('#'+player).position().left - x;
-			y = $('#'+player).position().top - y;
-			$('#'+player).animate({left: "+="+x, top:"+="+y}, 10000);
+			if($('#'+player).position().left != x || $('#'+player).position().top != y){
+				x = x - $('#'+player).position().left;
+				y = y - $('#'+player).position().top;
+				$('#'+player).animate({left: "+="+x, top:"+="+y}, 4900);
+			}
 		}else{
-			$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background: #"+players[i][4]+";\"></div>");
+			$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"></div>");
 		}
 	}
 }
 function player_map(){
-	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;\"></div>");
+	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;background:#000000;\"></div>");
 	x = 5000 - ($(document).width() / 2);
 	y = 5000 - ($(document).height() / 2);
 	$('#players').css("left", "-"+x);
 	$('#players').css("top", "-"+y);
 }
 function player_sync(){
-	$.post("/api", {name:window.localplayer,x:$('#player_'+window.localplayer).position().left,y:$('#player_'+window.localplayer).position().top})
-	.done(function(data){
-		console.log( "Data Loaded: " + data );
+	xpos = $('#player_'+window.localplayer).position().left;
+	ypos = $('#player_'+window.localplayer).position().top;
+	
+	$.ajax({
+		type: "POST",
+		url: "/api/index.php?cache="+Math.round(new Date().getTime() / 1000),
+		data: { playerx: xpos, playery: ypos }
+	}).done(function( msg ) {
+		players = jQuery.parseJSON(msg);
 	});
+	
 	player_display();
 }
 
