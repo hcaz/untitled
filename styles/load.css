@@ -1,0 +1,38 @@
+body{
+	overflow: hidden;
+	background: url('../images/main_background.png');
+}
+#loader{
+	position: fixed;
+	width: 40%;
+	height: 30%;
+	left: calc(50% - 20%);
+	top: calc(50% - 15%);
+	border-radius: 15px;
+	border: 4px solid #fff;
+	background: url('../images/loader_background.png');
+}
+#loader > div{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	left: calc(50% - 25px);
+	top: calc(50% - 75px);
+	background: url('../images/loader_image.gif');
+	background-size: cover;
+}
+#loader > h1{
+	position: absolute;
+	color: #fff;
+	font-size: 42px;
+	top: calc(50% - 50px);
+	width: 100%;
+	text-align:center;
+}
+#loader > p{
+	position: absolute;
+	color: #fff;
+	top: calc(50% + 25px);
+	width: 100%;
+	text-align:center;
+}
