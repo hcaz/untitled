@@ -38,8 +38,6 @@ body{
 
 #players{
 	position:fixed;
-	top:-5000px;
-	left:-5000px;
 	width:10000px;
 	height:10000px;
 	background: url('/images/main_background.png');
@@ -48,5 +46,4 @@ body{
 	position: absolute;
 	width: 25px;
 	height: 25px;
-	background: #000;
 }
