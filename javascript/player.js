@@ -1,17 +1,19 @@
 var players = [["fill","000000",10000,10000]];
 function player_display(){
 	for(var i=0;i<players.length;i++){
-		player = "player_"+players[i][0];
-		x = players[i][2];
-		y = players[i][3];
-		if($('#'+player).length){
-			if($('#'+player).position().left != x || $('#'+player).position().top != y){
-				x = x - $('#'+player).position().left;
-				y = y - $('#'+player).position().top;
-				$('#'+player).animate({left: "+="+x, top:"+="+y}, 4900);
+		if(players[i][0]!=window.localplayer){
+			player = "player_"+players[i][0];
+			x = players[i][2];
+			y = players[i][3];
+			if($('#'+player).length){
+				if($('#'+player).position().left != x || $('#'+player).position().top != y){
+					x = x - $('#'+player).position().left;
+					y = y - $('#'+player).position().top;
+					$('#'+player).animate({left: "+="+x, top:"+="+y}, 4900);
+				}
+			}else{
+				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"></div>");
 			}
-		}else{
-			$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"></div>");
 		}
 	}
 }
