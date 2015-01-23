@@ -2,7 +2,8 @@
 	<head>
 		<title>Untitled</title>
 		<link rel="stylesheet" type="text/css" href="/styles/load.css"/>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 		<script type="text/javascript" src="/javascript/load.js" defer></script>
 	</head>
 	
