@@ -45,25 +45,25 @@ $(document).keydown(function(e) {
 		case 39: // right
 		case 68: // d
 		$('#players').animate({left: "-="+speed}, 10);
-		$('#player_'+window.localplayer).animate({left: "+="+speed}, 10);
+		$('#player_'+window.localplayer).css("left", $('#player_'+window.localplayer).position().left+speed);
 		break;
 
 		case 40: // down
 		case 83: // down
 		$('#players').animate({top:"-="+speed}, 10);
-		$('#player_'+window.localplayer).animate({top:"+="+speed}, 10);
+		$('#player_'+window.localplayer).css("top", $('#player_'+window.localplayer).position().top+speed);
 		break;
 
 		case 37: // left
 		case 65: // a
 		$('#players').animate({left: "+="+speed}, 10);
-		$('#player_'+window.localplayer).animate({left: "-="+speed}, 10);
+		$('#player_'+window.localplayer).css("left", $('#player_'+window.localplayer).position().left-speed);
 		break;
 
 		case 38: // up
 		case 87: // w
 		$('#players').animate({top:"+="+speed}, 10);
-		$('#player_'+window.localplayer).animate({top:"-="+speed}, 10);
+		$('#player_'+window.localplayer).css("top", $('#player_'+window.localplayer).position().top-speed);
 		break;
 		default: return; // exit this handler for other keys
 	}
