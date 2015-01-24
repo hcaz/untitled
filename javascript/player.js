@@ -89,7 +89,11 @@ function player_sync(){
 }
 
 $(document).keydown(function(e) {
-	speed = 14;
+	if(window.tagVar=="y"){
+		speed = 20;
+	}else{
+		speed = 10;
+	}
 	switch(e.which) {
 		case 39: // right
 		case 68: // d

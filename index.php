@@ -1,6 +1,8 @@
 <html>
 	<head>
 		<title>Untitled</title>
+		<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+		<link rel="icon" href="/images/favicon.png" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="/styles/load.css"/>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
