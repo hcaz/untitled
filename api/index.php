@@ -8,7 +8,13 @@ if($_REQUEST['tig']=="true"){
 	$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `STAMP` > '".(time()-30)."' AND `COLOR` = 'y';");
 	if(mysqli_num_rows($result)==0){
 		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'n';");
-		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y' WHERE `STAMP` > '".(time()-30)."' ORDER BY RAND() LIMIT 1;");
+		$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `STAMP` > '".(time()-30)."';");
+		while($row = $result->fetch_assoc()){
+			$id[] = $row['ID'];
+		}
+		$idR = array_rand($id);
+		$id = $id[$idR];
+		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y' WHERE `ID` = '".$id."';");
 	}
 	if($_REQUEST['player']!=""){
 		$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `HANDLE` = '".$_REQUEST['player']."';");
@@ -18,7 +24,7 @@ if($_REQUEST['tig']=="true"){
 			$result = $conn->query("UPDATE `PLAYERS` SET `X` = '".$_REQUEST['playerx']."', `Y` = '".$_REQUEST['playery']."', `STAMP` = UNIX_TIMESTAMP(NOW()) WHERE `HANDLE` = '".$_REQUEST['player']."';");
 		}
 	}
-	$result = $conn->query("SELECT `HANDLE`, `COLOR`, `X`, `Y` FROM `PLAYERS` WHERE `STAMP` > '".(time()-300)."';");
+	$result = $conn->query("SELECT `HANDLE`, `COLOR`, `X`, `Y` FROM `PLAYERS` WHERE `STAMP` > '".(time()-30)."';");
 	while($row = $result->fetch_assoc()) {
 		$players[] = array($row["HANDLE"],$row["COLOR"],$row["X"],$row["Y"],false);
 	}
