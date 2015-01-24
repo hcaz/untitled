@@ -1,7 +1,9 @@
 var players = [["fill","000000",10000,10000]];
 function player_display(){
+	var currentPlayers = [];
 	for(var i=0;i<players.length;i++){
 		if(players[i][0]!=window.localplayer){
+			currentPlayers[players[i][0]] = true;
 			player = "player_"+players[i][0];
 			x = players[i][2];
 			y = players[i][3];
@@ -16,6 +18,11 @@ function player_display(){
 			}
 		}
 	}
+	$(".player").each(function(index){
+		if(currentPlayers[$(this).text()]!=true && $(this).text()!="fill" && $(this).text()!=window.localplayer){
+			$("#player_"+$(this).text()).remove();
+		}
+	});
 }
 function player_map(){
 	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;background:#000000;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
