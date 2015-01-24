@@ -22,7 +22,6 @@ function player_display(){
 				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>X</td><td>"+x+","+y+"</td></tr>");}
 			}
 		}else{
-			console.log(players[i][1]);
 			if(players[i][1]=="y"){
 				background = "FF3300";
 			}else{
