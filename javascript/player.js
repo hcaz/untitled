@@ -3,6 +3,7 @@ function player_display(){
 	var currentPlayers = [];
 	for(var i=0;i<players.length;i++){
 		if(players[i][0]!=window.localplayer){
+				window.crosscheck = ((new Date).getTime() + 150000);
 			currentPlayers[players[i][0]] = true;
 			player = "player_"+players[i][0];
 			x = players[i][2];
@@ -50,6 +51,7 @@ function player_map(){
 	$('#players').css("top", "-"+y);
 	$('#players').fadeIn("fast");
 	$('#playerlist').fadeIn("fast");
+	window.crosscheck = (new Date).getTime();
 }
 $("#playerlist").click(function() {
 	$(".playerlistAdd").fadeToggle("slow", "linear");
@@ -58,7 +60,6 @@ function player_cross(){
 	$(".player").each(function(index){
 		if($(this).text()!="fill" && $(this).text()!=window.localplayer){
 			if(overlaps( $('#player_'+window.localplayer), this )){
-				$('#player_'+window.localplayer).animate({left: "-=40",top: "-=40"}, 1);
 				$.ajax({
 					type: "POST",
 					url: "/api/index.php?cache="+Math.round(new Date().getTime() / 1000),
@@ -83,7 +84,8 @@ function player_sync(){
 	});
 	
 	player_display();
-	if(window.tagVar=="y"){
+	vartime = (new Date).getTime();
+	if(window.tagVar=="y" && vartime < window.crosscheck){
 		player_cross();
 	}
 }
