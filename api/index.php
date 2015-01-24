@@ -3,7 +3,7 @@ $conn = new mysqli("localhost", "untitled_main", "randompassword", "untitled_mai
 if($_REQUEST['player']!=""){
 	$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `HANDLE` = '".$_REQUEST['player']."';");
 	if($result->num_rows == 0){
-		$result = $conn->query("INSERT INTO `PLAYERS` (`HANDLE`, `COLOR`, `X`, `Y`, `STAMP`) VALUES ('".$_REQUEST['player']."', 'eeeeee', '".$_REQUEST['playerx']."', '".$_REQUEST['playery']."', UNIX_TIMESTAMP(NOW()));");
+		$result = $conn->query("INSERT INTO `PLAYERS` (`HANDLE`, `COLOR`, `X`, `Y`, `STAMP`) VALUES ('".$_REQUEST['player']."', '999999', '".$_REQUEST['playerx']."', '".$_REQUEST['playery']."', UNIX_TIMESTAMP(NOW()));");
 	}else{
 		$result = $conn->query("UPDATE `PLAYERS` SET `X` = '".$_REQUEST['playerx']."', `Y` = '".$_REQUEST['playery']."', `STAMP` = UNIX_TIMESTAMP(NOW()) WHERE `HANDLE` = '".$_REQUEST['player']."';");
 	}
