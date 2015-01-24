@@ -63,3 +63,6 @@ body{
 .player{
 	position: absolute;
 }
+#player_fill{
+	display: none;
+}
