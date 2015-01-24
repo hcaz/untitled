@@ -8,12 +8,10 @@ function player_display(){
 			x = players[i][2];
 			y = players[i][3];
 			if($('#'+player).length){
-				if($('#'+player).position().left != x || $('#'+player).position().top != y){
-					$("#table_"+player).html("<td>"+players[i][0]+"</td><td>"+x+","+y+"</td>");
-					x = x - $('#'+player).position().left;
-					y = y - $('#'+player).position().top;
-					$('#'+player).animate({left: "+="+x, top:"+="+y}, 1);
-				}
+				$("#table_"+player).html("<td>"+players[i][0]+"</td><td>"+x+","+y+"</td>");
+				x = x - $('#'+player).position().left;
+				y = y - $('#'+player).position().top;
+				$('#'+player).animate({left: "+="+x, top:"+="+y, backgroundColor: "#"+players[i][1]}, 1);
 			}else{
 				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
 				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>"+x+","+y+"</td></tr>");}
