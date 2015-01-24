@@ -7,7 +7,7 @@ function player_display(){
 			player = "player_"+players[i][0];
 			x = players[i][2];
 			y = players[i][3];
-			if(players[i][1]){
+			if(players[i][1]=="y"){
 				background = "FF3300";
 			}else{
 				background = "66FF00";
@@ -22,13 +22,14 @@ function player_display(){
 				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>X</td><td>"+x+","+y+"</td></tr>");}
 			}
 		}else{
-			if(players[i][1]){
+			console.log(players[i][1]);
+			if(players[i][1]=="y"){
 				background = "FF3300";
 			}else{
-				background = "66FF00";
+				background = "000000";
 			}
-			$('#player_'+player).animate({backgroundColor: "#"+background}, 1);
-			window.tagVar = players[i][0];
+			$('#player_'+players[i][0]).animate({backgroundColor: "#"+background}, 1);
+			window.tagVar = players[i][1];
 		}
 	}
 	$(".player").each(function(index){
@@ -55,13 +56,12 @@ function player_cross(){
 	$(".player").each(function(index){
 		if($(this).text()!="fill" && $(this).text()!=window.localplayer){
 			if(overlaps( $('#player_'+window.localplayer), this )){
+				$('#player_'+window.localplayer).animate({left: "-=40",top: "-=40"}, 1);
 				$.ajax({
 					type: "POST",
 					url: "/api/index.php?cache="+Math.round(new Date().getTime() / 1000),
 					data: { tig: "true", playertag: $(this).text() }
 				}).done(function( msg ) {
-					players = jQuery.parseJSON(msg);
-					player_sync();
 				});
 			}
 		}
@@ -81,7 +81,7 @@ function player_sync(){
 	});
 	
 	player_display();
-	if(window.tagVar==true){
+	if(window.tagVar=="y"){
 		player_cross();
 	}
 }

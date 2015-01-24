@@ -1,8 +1,8 @@
 <?php
 $conn = new mysqli("localhost", "untitled_main", "randompassword", "untitled_main");
 if($_REQUEST['tig']=="true"){
-	$result = $conn->query("UPDATE `PLAYERS` SET `COLOR` = 'false';");
-	$result = $conn->query("UPDATE `PLAYERS` SET `COLOR` = 'true' WHERE `HANDLE` = '".$_REQUEST['playertag']."';");
+	$result = $conn->query("UPDATE `PLAYERS` SET `COLOR` = 'n';");
+	$result = $conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y' WHERE `HANDLE` = '".$_REQUEST['playertag']."';");
 }else{
 	if($_REQUEST['player']!=""){
 		$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `HANDLE` = '".$_REQUEST['player']."';");
