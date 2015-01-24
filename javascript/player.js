@@ -9,28 +9,37 @@ function player_display(){
 			y = players[i][3];
 			if($('#'+player).length){
 				if($('#'+player).position().left != x || $('#'+player).position().top != y){
+					$("#table_"+player).html("<td>"+players[i][0]+"</td><td>"+x+","+y+"</td>");
 					x = x - $('#'+player).position().left;
 					y = y - $('#'+player).position().top;
 					$('#'+player).animate({left: "+="+x, top:"+="+y}, 1);
 				}
 			}else{
 				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
+				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>"+x+","+y+"</td></tr>");}
 			}
 		}
 	}
 	$(".player").each(function(index){
 		if(currentPlayers[$(this).text()]!=true && $(this).text()!="fill" && $(this).text()!=window.localplayer){
 			$("#player_"+$(this).text()).remove();
+			$("#table_player_"+$(this).text()).remove();
 		}
 	});
 }
 function player_map(){
+	$('#playerlist').append("<tr id=\"table_"+window.localplayer+"\"><td>"+window.localplayer+"</td><td>5000,5000</td></tr>");
 	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;background:#000000;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
 	x = 5000 - ($(document).width() / 2);
 	y = 5000 - ($(document).height() / 2);
 	$('#players').css("left", "-"+x);
 	$('#players').css("top", "-"+y);
+	$('#players').fadeIn("fast");
+	$('#playerlist').fadeIn("fast");
 }
+$("#playerlist").click(function() {
+	$(".playerlistAdd").fadeToggle("slow", "linear");
+});
 function player_sync(){
 	xpos = $('#player_'+window.localplayer).position().left;
 	ypos = $('#player_'+window.localplayer).position().top;
@@ -86,6 +95,7 @@ $(document).keydown(function(e) {
 		$('#player_'+window.localplayer).css("top", "5000");
 		alert("Out of bounds!");
 	}
+	$("#table_"+window.localplayer).html("<td>"+window.localplayer+"</td><td>"+$('#player_'+window.localplayer).position().left+","+$('#player_'+window.localplayer).position().top+"</td>");
 	
 	e.preventDefault(); // prevent the default action (scroll / move caret)
 });

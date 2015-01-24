@@ -1,3 +1,7 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
 body{
 	overflow: hidden;
 }
@@ -41,6 +45,22 @@ body{
 	width:10000px;
 	height:10000px;
 	background: url('/images/main_background.png');
+	display: none;
+}
+#playerlist{
+	position: fixed;
+	top: 0px;
+	left: 40px;
+	width: 150px;
+	background: rgba(0,0,0,0.6);
+	display: none;
+}
+.playerlistAdd{
+	display: none;
+}
+#playerlist td{
+	color: #fff;
+	text-align: center;
 }
 .player{
 	position: absolute;
