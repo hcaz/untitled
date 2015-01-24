@@ -1,9 +1,12 @@
 <?php
 $conn = new mysqli("localhost", "untitled_main", "randompassword", "untitled_main");
 if($_REQUEST['tig']=="true"){
-	$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'n';");
-	$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y' WHERE `HANDLE` = '".$_REQUEST['playertag']."';");
-	$players[] = "true";
+	$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `TAGGED` > '".(time()-10)."';");
+	if(mysqli_num_rows($result)==0){
+		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'n';");
+		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y', `TAGGED` = UNIX_TIMESTAMP(NOW()) WHERE `HANDLE` = '".$_REQUEST['playertag']."';");
+		$players[] = "true";
+	}
 }else{
 	$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `STAMP` > '".(time()-30)."' AND `COLOR` = 'y';");
 	if(mysqli_num_rows($result)==0){

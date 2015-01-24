@@ -3,7 +3,6 @@ function player_display(){
 	var currentPlayers = [];
 	for(var i=0;i<players.length;i++){
 		if(players[i][0]!=window.localplayer){
-				window.crosscheck = ((new Date).getTime() + 150000);
 			currentPlayers[players[i][0]] = true;
 			player = "player_"+players[i][0];
 			x = players[i][2];
@@ -51,7 +50,6 @@ function player_map(){
 	$('#players').css("top", "-"+y);
 	$('#players').fadeIn("fast");
 	$('#playerlist').fadeIn("fast");
-	window.crosscheck = (new Date).getTime();
 }
 $("#playerlist").click(function() {
 	$(".playerlistAdd").fadeToggle("slow", "linear");
@@ -85,7 +83,7 @@ function player_sync(){
 	
 	player_display();
 	vartime = (new Date).getTime();
-	if(window.tagVar=="y" && vartime < window.crosscheck){
+	if(window.tagVar=="y"){
 		player_cross();
 	}
 }
