@@ -4,6 +4,7 @@
 }
 body{
 	overflow: hidden;
+	background: url("/images/body_background.png");
 }
 #loader{
 	position: fixed;
@@ -42,8 +43,8 @@ body{
 
 #players{
 	position:fixed;
-	width:10000px;
-	height:10000px;
+	width:2000px;
+	height:2000px;
 	border: 4px solid #000;
 	display: none;
 }

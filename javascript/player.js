@@ -1,4 +1,4 @@
-var players = [["fill",false,10000,10000]];
+var players = [["fill",false,2000,2000]];
 function player_display(){
 	var currentPlayers = [];
 	for(var i=0;i<players.length;i++){
@@ -42,10 +42,10 @@ function player_display(){
 	});
 }
 function player_map(){
-	$('#playerlist').append("<tr id=\"table_"+window.localplayer+"\"><td>"+window.localplayer+"</td><td>5000,5000</td></tr>");
-	$("#players").append("<div class=\"player player_me\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
-	x = 5000 - ($(document).width() / 2);
-	y = 5000 - ($(document).height() / 2);
+	$('#playerlist').append("<tr id=\"table_"+window.localplayer+"\"><td>"+window.localplayer+"</td><td>1000,1000</td></tr>");
+	$("#players").append("<div class=\"player player_me\" id=\"player_"+window.localplayer+"\" style=\"top:1000px;left:1000px;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
+	x = 1000 - ($(document).width() / 2);
+	y = 1000 - ($(document).height() / 2);
 	$('#players').css("left", "-"+x);
 	$('#players').css("top", "-"+y);
 	$('#players').fadeIn("fast");
@@ -89,44 +89,42 @@ function player_sync(){
 }
 
 $(document).keydown(function(e) {
-	speed = 4;
+	speed = 14;
 	switch(e.which) {
 		case 39: // right
 		case 68: // d
-		$('#players').animate({left: "-="+speed}, 1);
-		$('#player_'+window.localplayer).animate({left: "+="+speed}, 1);
+		if($('#player_'+window.localplayer).position().left < 1950){
+			$('#players').animate({left: "-="+speed}, 1);
+			$('#player_'+window.localplayer).animate({left: "+="+speed}, 1);
+		}
 		break;
 
 		case 40: // down
 		case 83: // down
-		$('#players').animate({top:"-="+speed}, 1);
-		$('#player_'+window.localplayer).animate({top:"+="+speed}, 1);
+		if($('#player_'+window.localplayer).position().top < 1950){
+			$('#players').animate({top:"-="+speed}, 1);
+			$('#player_'+window.localplayer).animate({top:"+="+speed}, 1);
+		}
 		break;
 
 		case 37: // left
 		case 65: // a
-		$('#players').animate({left: "+="+speed}, 1);
-		$('#player_'+window.localplayer).animate({left: "-="+speed}, 1);
+		if($('#player_'+window.localplayer).position().left > 25){
+			$('#players').animate({left: "+="+speed}, 1);
+			$('#player_'+window.localplayer).animate({left: "-="+speed}, 1);
+		}
 		break;
 
 		case 38: // up
 		case 87: // w
-		$('#players').animate({top:"+="+speed}, 1);
-		$('#player_'+window.localplayer).animate({top:"-="+speed}, 1);
+		if($('#player_'+window.localplayer).position().top > 25){
+			$('#players').animate({top:"+="+speed}, 1);
+			$('#player_'+window.localplayer).animate({top:"-="+speed}, 1);
+		}
 		break;
 		default: return; // exit this handler for other keys
 	}
 	
-	if($('#player_'+window.localplayer).position().left > 10000 || $('#player_'+window.localplayer).position().left < 0 || $('#player_'+window.localplayer).position().top > 10000 || $('#player_'+window.localplayer).position().top < 0){
-		x = 5000 - ($(document).width() / 2);
-		y = 5000 - ($(document).height() / 2);
-		$('#players').css("left", "-"+x);
-		$('#players').css("top", "-"+y);
-		
-		$('#player_'+window.localplayer).css("left", "5000");
-		$('#player_'+window.localplayer).css("top", "5000");
-		alert("Out of bounds!");
-	}
 	$("#table_"+window.localplayer).html("<td>"+window.localplayer+"</td><td>"+$('#player_'+window.localplayer).position().left+","+$('#player_'+window.localplayer).position().top+"</td>");
 	
 	e.preventDefault(); // prevent the default action (scroll / move caret)
