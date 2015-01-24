@@ -10,6 +10,15 @@
 	width: 25px;
 	height: 25px;
 }
+.player_normal{
+	background: #66FF00;
+}
+.player_tig{
+	background: #FF3300;
+}
+.player_me{
+	background: #000000;
+}
 .bubble{
 	position: relative;
 	background: #000;

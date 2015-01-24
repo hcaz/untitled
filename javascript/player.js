@@ -8,26 +8,29 @@ function player_display(){
 			x = players[i][2];
 			y = players[i][3];
 			if(players[i][1]=="y"){
-				background = "FF3300";
+				background = "tig";
 			}else{
-				background = "66FF00";
+				background = "normal";
 			}
 			if($('#'+player).length){
 				$("#table_"+player).html("<td>"+players[i][0]+"</td><td>"+x+","+y+"</td>");
 				x = x - $('#'+player).position().left;
 				y = y - $('#'+player).position().top;
-				$('#'+player).animate({left: "+="+x, top:"+="+y, backgroundColor: "#"+background}, 1);
+				$('#'+player).animate({left: "+="+x, top:"+="+y}, 1);
+				$('#'+player).removeClass("player_me player_tig player_normal");
+				$('#'+player).addClass("player_"+background);
 			}else{
-				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+background+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
+				$("#players").append("<div class=\"player player_"+background+"\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
 				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>X</td><td>"+x+","+y+"</td></tr>");}
 			}
 		}else{
 			if(players[i][1]=="y"){
-				background = "FF3300";
+				background = "tig";
 			}else{
-				background = "000000";
+				background = "me";
 			}
-			$('#player_'+players[i][0]).animate({backgroundColor: "#"+background}, 1);
+			$('#player_'+players[i][0]).removeClass("player_me player_tig player_normal");
+			$('#player_'+players[i][0]).addClass("player_"+background);
 			window.tagVar = players[i][1];
 		}
 	}
@@ -40,7 +43,7 @@ function player_display(){
 }
 function player_map(){
 	$('#playerlist').append("<tr id=\"table_"+window.localplayer+"\"><td>"+window.localplayer+"</td><td>5000,5000</td></tr>");
-	$("#players").append("<div class=\"player\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;background:#000000;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
+	$("#players").append("<div class=\"player player_me\" id=\"player_"+window.localplayer+"\" style=\"top:5000px;left:5000px;\"><span class=\"bubble\">"+window.localplayer+"</span></div>");
 	x = 5000 - ($(document).width() / 2);
 	y = 5000 - ($(document).height() / 2);
 	$('#players').css("left", "-"+x);

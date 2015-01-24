@@ -17,7 +17,7 @@ function style_name(){
 		if(style!="main" && style!="space"){
 			style = "main";
 		}
-		//$.cookie("style", style, { expires: 7 });
+		$.cookie("style", style, { expires: 7 });
 		return style;
 	} else {
 		return $.cookie("style");

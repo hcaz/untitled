@@ -10,6 +10,21 @@
 	width: 25px;
 	height: 25px;
 }
+.player_normal{
+	background: url('/images/space_normal.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.player_tig{
+	background: url('/images/space_tig.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.player_me{
+	background: url('/images/space_me.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
 .bubble{
 	position: relative;
 	background: #000;
