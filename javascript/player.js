@@ -126,6 +126,7 @@ $(document).keydown(function(e) {
 			$('#player_'+window.localplayer).animate({top:"-="+speed}, 1);
 		}
 		break;
+		
 		default: return; // exit this handler for other keys
 	}
 	
