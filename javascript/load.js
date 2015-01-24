@@ -7,7 +7,4 @@ $(document).ready(function() {
 	$("#loader").fadeOut("fast");
 	player_map();
 	player_sync();
-	window.setInterval(function(){
-		player_sync();
-	}, 1000);
 });

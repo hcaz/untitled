@@ -9,7 +9,7 @@ function player_display(){
 				if($('#'+player).position().left != x || $('#'+player).position().top != y){
 					x = x - $('#'+player).position().left;
 					y = y - $('#'+player).position().top;
-					$('#'+player).animate({left: "+="+x, top:"+="+y}, 900);
+					$('#'+player).animate({left: "+="+x, top:"+="+y}, 1);
 				}
 			}else{
 				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
@@ -34,6 +34,7 @@ function player_sync(){
 		data: { playerx: xpos, playery: ypos }
 	}).done(function( msg ) {
 		players = jQuery.parseJSON(msg);
+		player_sync();
 	});
 	
 	player_display();
@@ -44,26 +45,26 @@ $(document).keydown(function(e) {
 	switch(e.which) {
 		case 39: // right
 		case 68: // d
-		$('#players').animate({left: "-="+speed}, 10);
-		$('#player_'+window.localplayer).css("left", $('#player_'+window.localplayer).position().left+speed);
+		$('#players').animate({left: "-="+speed}, 1);
+		$('#player_'+window.localplayer).animate({left: "+="+speed}, 1);
 		break;
 
 		case 40: // down
 		case 83: // down
-		$('#players').animate({top:"-="+speed}, 10);
-		$('#player_'+window.localplayer).css("top", $('#player_'+window.localplayer).position().top+speed);
+		$('#players').animate({top:"-="+speed}, 1);
+		$('#player_'+window.localplayer).animate({top:"+="+speed}, 1);
 		break;
 
 		case 37: // left
 		case 65: // a
-		$('#players').animate({left: "+="+speed}, 10);
-		$('#player_'+window.localplayer).css("left", $('#player_'+window.localplayer).position().left-speed);
+		$('#players').animate({left: "+="+speed}, 1);
+		$('#player_'+window.localplayer).animate({left: "-="+speed}, 1);
 		break;
 
 		case 38: // up
 		case 87: // w
-		$('#players').animate({top:"+="+speed}, 10);
-		$('#player_'+window.localplayer).css("top", $('#player_'+window.localplayer).position().top-speed);
+		$('#players').animate({top:"+="+speed}, 1);
+		$('#player_'+window.localplayer).animate({top:"-="+speed}, 1);
 		break;
 		default: return; // exit this handler for other keys
 	}
