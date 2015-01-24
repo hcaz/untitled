@@ -1,4 +1,4 @@
-var players = [["fill","000000",10000,10000]];
+var players = [["fill",false,10000,10000]];
 function player_display(){
 	var currentPlayers = [];
 	for(var i=0;i<players.length;i++){
@@ -7,15 +7,28 @@ function player_display(){
 			player = "player_"+players[i][0];
 			x = players[i][2];
 			y = players[i][3];
+			if(players[i][1]){
+				background = "FF3300";
+			}else{
+				background = "66FF00";
+			}
 			if($('#'+player).length){
 				$("#table_"+player).html("<td>"+players[i][0]+"</td><td>"+x+","+y+"</td>");
 				x = x - $('#'+player).position().left;
 				y = y - $('#'+player).position().top;
-				$('#'+player).animate({left: "+="+x, top:"+="+y, backgroundColor: "#"+players[i][1]}, 1);
+				$('#'+player).animate({left: "+="+x, top:"+="+y, backgroundColor: "#"+background}, 1);
 			}else{
-				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+players[i][1]+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
-				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>"+x+","+y+"</td></tr>");}
+				$("#players").append("<div class=\"player\" id=\""+player+"\" style=\"top:"+y+"px;left:"+x+"px;background:#"+background+";\"><span class=\"bubble\">"+players[i][0]+"</span></div>");
+				if(players[i][0]!="fill"){$('#playerlist').append("<tr class=\"playerlistAdd\" id=\"table_"+player+"\"><td>"+players[i][0]+"</td><td>X</td><td>"+x+","+y+"</td></tr>");}
 			}
+		}else{
+			if(players[i][1]){
+				background = "FF3300";
+			}else{
+				background = "66FF00";
+			}
+			$('#player_'+player).animate({backgroundColor: "#"+background}, 1);
+			window.tagVar = players[i][0];
 		}
 	}
 	$(".player").each(function(index){
@@ -38,6 +51,22 @@ function player_map(){
 $("#playerlist").click(function() {
 	$(".playerlistAdd").fadeToggle("slow", "linear");
 });
+function player_cross(){
+	$(".player").each(function(index){
+		if($(this).text()!="fill" && $(this).text()!=window.localplayer){
+			if(overlaps( $('#player_'+window.localplayer), this )){
+				$.ajax({
+					type: "POST",
+					url: "/api/index.php?cache="+Math.round(new Date().getTime() / 1000),
+					data: { tig: "true", playertag: $(this).text() }
+				}).done(function( msg ) {
+					players = jQuery.parseJSON(msg);
+					player_sync();
+				});
+			}
+		}
+	});
+}
 function player_sync(){
 	xpos = $('#player_'+window.localplayer).position().left;
 	ypos = $('#player_'+window.localplayer).position().top;
@@ -52,6 +81,9 @@ function player_sync(){
 	});
 	
 	player_display();
+	if(window.tagVar==true){
+		player_cross();
+	}
 }
 
 $(document).keydown(function(e) {
@@ -107,3 +139,26 @@ function player_set_name(){
 		return $.cookie("player");
 	}
 }
+
+var overlaps = (function () {
+    function getPositions( elem ) {
+        var pos, width, height;
+        pos = $( elem ).position();
+        width = $( elem ).width();
+        height = $( elem ).height();
+        return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
+    }
+
+    function comparePositions( p1, p2 ) {
+        var r1, r2;
+        r1 = p1[0] < p2[0] ? p1 : p2;
+        r2 = p1[0] < p2[0] ? p2 : p1;
+        return r1[1] > r2[0] || r1[0] === r2[0];
+    }
+
+    return function ( a, b ) {
+        var pos1 = getPositions( a ),
+            pos2 = getPositions( b );
+        return comparePositions( pos1[0], pos2[0] ) && comparePositions( pos1[1], pos2[1] );
+    };
+})();
