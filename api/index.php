@@ -4,7 +4,7 @@ if($_REQUEST['tig']=="true"){
 	$result = $conn->query("SELECT `ID` FROM `PLAYERS` WHERE `TAGGED` > '".(time()-10)."';");
 	if(mysqli_num_rows($result)==0){
 		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'n';");
-		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y', `TAGGED` = UNIX_TIMESTAMP(NOW()) WHERE `HANDLE` = '".$_REQUEST['playertag']."';");
+		$conn->query("UPDATE `PLAYERS` SET `COLOR` = 'y', `TAGGED` = UNIX_TIMESTAMP(NOW()), `COUNT` = `COUNT` + 1 WHERE `HANDLE` = '".$_REQUEST['playertag']."';");
 		$players[] = "true";
 	}
 }else{
