@@ -1,0 +1,11 @@
+[24-Jan-2015 18:11:40 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/untitled/public_html/api/index.php on line 5
+[24-Jan-2015 18:11:46 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/untitled/public_html/api/index.php on line 9
+[24-Jan-2015 18:13:05 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/untitled/public_html/api/index.php on line 5
+[24-Jan-2015 18:35:00 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/untitled/public_html/api/index.php on line 12
+[24-Jan-2015 18:44:34 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/untitled/public_html/api/index.php on line 6
+[24-Jan-2015 18:49:00 UTC] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/untitled/public_html/api/index.php on line 18
+[24-Jan-2015 18:53:36 UTC] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/untitled/public_html/api/index.php on line 18
+[24-Jan-2015 18:55:01 UTC] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/untitled/public_html/api/index.php on line 18
+[24-Jan-2015 18:55:43 UTC] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/untitled/public_html/api/index.php on line 18
+[24-Jan-2015 19:28:53 UTC] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/untitled/public_html/api/index.php on line 18
+[24-Jan-2015 19:48:14 UTC] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/untitled/public_html/api/index.php on line 18

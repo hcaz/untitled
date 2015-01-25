@@ -1,42 +1,42 @@
-#players{
-	background: url('/images/space_background.png');
-}
-#playerlist td{
-	color: #fff;
-	text-align: center;
-}
-.player{
-	position: absolute;
-	width: 25px;
-	height: 25px;
-}
-.player_normal{
-	background: url('/images/space_normal.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.player_tig{
-	background: url('/images/space_tig.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.player_me{
-	background: url('/images/space_me.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-.bubble{
-	position: relative;
-	background: #000;
-	color: #fff;
-	top: 25px;
-	left: 25px;
-	padding: 2px;
-	border-radius: 5px;
-	font-size: 8px;
-	opacity: 0.5;
-}
-.bubble:hover{
-	font-size: 16px;
-	opacity: 1;
+#players{
+	background: url('/images/space_background.png');
+}
+#playerlist td{
+	color: #fff;
+	text-align: center;
+}
+.player{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+}
+.player_normal{
+	background: url('/images/space_normal.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.player_tig{
+	background: url('/images/space_tig.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.player_me{
+	background: url('/images/space_me.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.bubble{
+	position: relative;
+	background: #000;
+	color: #fff;
+	top: 25px;
+	left: 25px;
+	padding: 2px;
+	border-radius: 5px;
+	font-size: 8px;
+	opacity: 0.5;
+}
+.bubble:hover{
+	font-size: 16px;
+	opacity: 1;
 }
